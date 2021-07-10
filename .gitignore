@@ -1,0 +1,63 @@
+# General
+.DS_Store
+*.ini
+*.xmp
+
+# Illustrator
+*.tmp
+
+# Images
+*.png
+
+# Data
+*.csv
+
+# Credentials
+*credentials.json
+
+# PyCharm
+.idea/*
+venv
+
+# Python
+*.pyc
+*.pkl
+
+# XRF
+*.bcf
+
+# Numpy / pickles
+*.npy
+*.pickle
+*.dill
+
+# Environments
+.venv
+venv/
+venv38/
+.venv38
+
+# Video
+*/Adobe Premiere Pro Video Previews/*
+*.MXF
+*.mpeg
+2020_flexible/movie_simulator/simulator.mp4
+2020_multi/20201029_xrf_prof_compare/xrf_data/20201029_wafer_backup.bcf
+/2021_multi/figures/pareto_front/campaign/
+/2021_multi/spin_coating/campaigns/
+/2021_multi/figures/SI/spin_coating_campaign/campaign/
+/2021_multi/figures/spray_coater/campaign/
+/2021_multi/projects/20201202_cross_valid_condxrf_opt/campaign/
+/2021_multi/projects/20201207_conductance_dist/campaign/
+/2021_multi/projects/20201207_long_condxrf/campaign/
+/2021_multi/projects/20201208_inputs_for_cross/campaign/
+/2021_multi/projects/20201210_subgroup_graphics/campaign/
+/2021_multi/projects/20201211_proc_2020-12-10_18-28-27/campaign/
+/2021_multi/projects/20201214_proc_2020-12-13_13-13-18/campaign/
+/2021_multi/projects/20201221_proc_2020-12-18_17-38-40/campaign/
+/2021_sdl/lit_review/all_comparisons/
+/2021_sdl/simulations/results/
+/2021_multi/projects/20201202_cross_valid_condxrf_opt/cond_test/
+/2021_multi/figures/SI/spin_coating_campaign/frames/
+/2021_multi/projects/20201210_subgroup_graphics/cond/
+/2021_multi/spin_coating/iv_plots/
