@@ -152,12 +152,16 @@ def sunshine():
     warmup(serial)
 
     # Configure
+    print('Configuring to P1')
     send_command(serial, 'P1')
 
     while True:
 
         # Get now
+        print('Getting now')
         now = get_now()
+
+        print('Getting sunrise')
         sunrise, sunset = get_sunrise_sunset()
         print(f'Sunrise: {sunrise}')
         print(f'Sunset: {sunset}')
