@@ -3,7 +3,7 @@ import time
 
 def run():
     wiringpi.wiringPiSetupGpio()
-    serial = wiringpi.serialOpen('/dev/ttyAMA0', 9600)
+    serial = wiringpi.serialOpen('/dev/ttyS0', 9600)
     print(serial)
     wiringpi.serialPuts(serial, 'P7')
     timer = 0.3
