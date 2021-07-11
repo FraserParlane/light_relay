@@ -46,7 +46,7 @@ def update_location():
         latlon = os.popen('curl ipinfo.io/loc').read().rstrip()
         with open('latlon', 'w') as f:
             f.write(latlon)
-        print(f'Location updated ({latlon})')
+        print(f'Location updated: {latlon}')
 
     except:
         print('Location update failed.')
@@ -59,7 +59,7 @@ def get_location():
     lat, lon = latlon.split(',')
     lat = float(lat)
     lon = float(lon)
-    print(f'Location retrieved {lat},{lon}')
+    print(f'Location retrieved: {lat},{lon}')
     return lat, lon
 
 
@@ -97,19 +97,20 @@ def get_now():
     return now.time()
 
 
-def day_in_seconds(sunrise, sunset):
-    date = datetime.date(1, 1, 1)
-    sunrise_f = datetime.datetime.combine(date, sunrise)
-    sunset_f = datetime.datetime.combine(date, sunset)
+def dur_in_seconds(sunrise, sunset, offset=0):
+    date0 = datetime.date(1, 1, 1)
+    date1 = datetime.date(1, 1, 1 + offset)
+    sunrise_f = datetime.datetime.combine(date0, sunrise)
+    sunset_f = datetime.datetime.combine(date1, sunset)
     length = sunset_f - sunrise_f
     return length.seconds
 
 
 def minutes_to_relay_format(minutes):
-    # Convert the number of minutes to the foramt of the relay
+    # Convert the number of minutes to the format of the relay
     smin = str(minutes).zfill(4)
-    string = [smin[0], '.', smin[1], '.', smin[2], '.', smin[3]]
-    return ''.join(string)
+    string = smin[0] + '.' + smin[1] + '.' + smin[2] + '.' + smin[3]
+    return string
 
 
 def warmup(serial):
@@ -149,14 +150,23 @@ def sunshine():
         # Get now
         now = get_now()
         sunrise, sunset = get_sunset_sunrise()
+        print(f'Sunrise: {sunrise}')
+        print(f'Sunset: {sunset}')
 
         # If it's after sunrise and the bulb is off
         if sunrise < now < sunset:
 
+            print('Daytime triggered')
+
             # Determine how long the lamp should be on
-            length_sec = day_in_seconds(sunrise, sunset)
+            length_sec = dur_in_seconds(now, sunset)
             length_min = int(length_sec / 60)
+            length_h = length_sec / 60 / 60
+            print(f'On time sec: {length_sec}')
+            print(f'On time min: {length_min}')
+            print(f'On time h: {length_h}')
             relay_min = minutes_to_relay_format(length_min)
+            print(f'Relay format: {relay_min}')
 
             # Start the relay
             send_command(serial, f'OP: {relay_min}')
@@ -165,9 +175,13 @@ def sunshine():
             # Wait for day to end, plus an hour
             time.sleep(length_sec + 60 * 60)
 
+        # TODO write better logic so there's a timer for the night
+
         # Else, wait for sunrise
         else:
-            time.sleep(60)
+            length_sec = dur_in_seconds(now, sunrise, offset=1)
+            print(f'Waiting {length_sec}')
+            time.sleep(length_sec)
 
 
 if __name__ == '__main__':
