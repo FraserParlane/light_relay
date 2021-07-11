@@ -1,5 +1,5 @@
 from suntime import Sun
-# import wiringpi
+import wiringpi
 import datetime
 import time
 import os
