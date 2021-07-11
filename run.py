@@ -123,6 +123,9 @@ def warmup(serial):
 def sunshine():
     # Emulate sunshine
 
+    # Wait for the pi to fully start up
+    time.sleep(10)
+
     # Update location
     update_location()
 
