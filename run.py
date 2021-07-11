@@ -2,7 +2,7 @@ import wiringpi
 import time
 
 def run():
-    wiringpi.wiringPiSetup()
+    wiringpi.wiringPiSetupGpio()
     serial = wiringpi.serialOpen('/dev/ttyAMA0', 9600)
     while True:
         print(serial)
