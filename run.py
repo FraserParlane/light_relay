@@ -5,7 +5,7 @@ def run():
     wiringpi.wiringPiSetupGpio()
     serial = wiringpi.serialOpen('/dev/ttyAMA0', 9600)
     print(serial)
-    timer = 0.1
+    timer = 0.3
     while True:
         time.sleep(timer)
         print('I')
