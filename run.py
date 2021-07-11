@@ -30,9 +30,9 @@ def run():
     send_command(serial, 'P1')
     send_command(serial, 'OP: 0001')
 
-    # while True:
-    #     send_trigger()
-    #     time.sleep(2)
+    while True:
+        send_trigger()
+        time.sleep(2)
 
 
 
