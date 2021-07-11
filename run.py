@@ -7,7 +7,7 @@ def run():
     while True:
         print(serial)
         time.sleep(0.5)
-        wiringpi.serialPuts(serial, 'on')
+        wiringpi.serialPuts(serial, 'P2')
         time.sleep(0.5)
         wiringpi.serialPuts(serial, 'off')
 
