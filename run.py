@@ -118,7 +118,7 @@ def dur_in_seconds(sunrise, sunset, offset=0):
 def minutes_to_relay_format(minutes):
     # Convert the number of minutes to the format of the relay
     smin = str(minutes).zfill(4)
-    string = smin[0] + '.' + smin[1] + '.' + smin[2] + '.' + smin[3]
+    string = smin[0:1] + '..' + smin[2] + '.' + smin[3] + '.'
     return string
 
 
@@ -178,7 +178,7 @@ def sunshine():
             print(f'Relay format: {relay_min}')
 
             # Start the relay
-            send_command(serial, f'OP: {relay_min}')
+            send_command(serial, f'OP:{relay_min}')
             send_trigger()
 
             # Wait for day to end, plus an hour
@@ -193,6 +193,9 @@ def sunshine():
             time.sleep(length_sec)
 
 if __name__ == '__main__':
-    sunshine()
+    # sunshine()
     # sunrise, sunset = get_sunrise_sunset()
     # print('a')
+    wiringpi.wiringPiSetupGpio()
+    serial = wiringpi.serialOpen('/dev/ttyS0', 9600)
+    wiringpi.pinMode(6, 1)
