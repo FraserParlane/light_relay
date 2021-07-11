@@ -50,25 +50,20 @@ def update_location():
         if ',' in latlon:
             with open('/home/pi/light_relay/latlon', 'w') as f:
                 f.write(latlon)
-        print(f'Location updated: {latlon}')
+        else:
+            pass
 
     except:
-        print('Location update failed.')
+        pass
 
 
 def get_location():
     # Get the current location
-    print('opening file')
     with open('/home/pi/light_relay/latlon', 'r') as f:
-        print('reading')
         latlon = f.read()
-    print('splitting')
-    print(latlon)
     lat, lon = latlon.split(',')
-    print('floating')
     lat = float(lat)
     lon = float(lon)
-    print(f'Location retrieved: {lat},{lon}')
     return lat, lon
 
 
@@ -86,16 +81,12 @@ def strip_timezone(dt):
 def get_sunrise_sunset():
     # Get the sunset and sunrise for current location
 
-    print('reading location')
     lat, lon = get_location()
-    print('making sun')
     sun = Sun(lat, lon)
-    print('gen times')
     sunrise = sun.get_sunrise_time()
     sunset = sun.get_sunset_time()
 
     # Convert into local timezone
-    print('converting')
     sunrise = utc_to_local(sunrise)
     sunset = utc_to_local(sunset)
 
@@ -103,8 +94,6 @@ def get_sunrise_sunset():
     sunrise = sunrise.time()
     sunset = sunset.time()
 
-    print(f'first (sunrise): {sunrise}')
-    print(f'second (sunset): {sunset}')
     return sunrise, sunset
 
 
@@ -144,52 +133,36 @@ def sunshine():
     # Emulate sunshine
 
     # Wait for the pi to fully start up
-    print('Waiting for Pi to warm up')
     time.sleep(10)
 
     # Update location
-    print('Updating location')
     update_location()
 
     # Set up wiringpi
-    print('Setting up GPIO')
     wiringpi.wiringPiSetupGpio()
     serial = wiringpi.serialOpen('/dev/ttyS0', 9600)
     wiringpi.pinMode(6, 1)
 
     # Send a warm up flash
-    print('Running warmup')
     warmup(serial)
 
     # Configure
-    print('Configuring to P1')
     send_command(serial, 'P1')
 
     while True:
 
         # Get now
-        print('Getting now')
         now = get_now()
 
-        print('Getting sunrise')
         sunrise, sunset = get_sunrise_sunset()
-        print(f'Sunrise: {sunrise}')
-        print(f'Sunset: {sunset}')
 
         # If it is during the day
         if sunrise < now < sunset:
 
-            print('Daytime triggered')
-
             # Determine how long the lamp should be on
             length_sec = dur_in_seconds(now, sunset)
             length_min = int(length_sec / 60)
-            length_h = length_sec / 60 / 60
-            print(f'On time sec: {length_sec}')
-            print(f'On time min: {length_min}')
-            print(f'On time h: {length_h}')
             relay_min = minutes_to_relay_format(length_min)
-            print(f'Relay format: {relay_min}')
 
             # Start the relay
             send_command(serial, f'OP:{relay_min}')
@@ -198,18 +171,11 @@ def sunshine():
             # Wait for day to end, plus an hour
             time.sleep(length_sec + 60 * 60)
 
-        # TODO write better logic so there's a timer for the night
-
         # Else, wait for sunrise
         else:
             length_sec = dur_in_seconds(now, sunrise, offset=1)
-            print(f'Waiting {length_sec}')
             time.sleep(length_sec)
 
+
 if __name__ == '__main__':
-    try:
-        sunshine()
-    except Exception as e:
-        print(e)
-        print(e.message)
-        print(e.args)
+    sunshine()
