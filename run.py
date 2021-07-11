@@ -193,6 +193,6 @@ def sunshine():
             time.sleep(length_sec)
 
 if __name__ == '__main__':
-    # sunshine()
-    sunrise, sunset = get_sunrise_sunset()
-    print('a')
+    sunshine()
+    # sunrise, sunset = get_sunrise_sunset()
+    # print('a')
