@@ -115,10 +115,9 @@ def minutes_to_relay_format(minutes):
 def warmup(serial):
     # Flash the lights to indicate successful warmup
     send_command(serial, 'P1')
-    for i in range(3):
-        send_command(serial, f'OP: 0001')
-        send_trigger()
-        time.sleep(2)
+    send_command(serial, f'OP: 0001')
+    send_trigger()
+    time.sleep(2)
 
 
 def sunshine():
