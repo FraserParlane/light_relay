@@ -57,9 +57,13 @@ def update_location():
 
 def get_location():
     # Get the current location
+    print('opening file')
     with open('latlon', 'r') as f:
+        print('reading')
         latlon = f.read()
+    print('splitting')
     lat, lon = latlon.split(',')
+    print('floating')
     lat = float(lat)
     lon = float(lon)
     print(f'Location retrieved: {lat},{lon}')
