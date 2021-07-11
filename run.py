@@ -47,8 +47,9 @@ def update_location():
     # Save the current location to file
     try:
         latlon = os.popen('curl ipinfo.io/loc').read().rstrip()
-        with open('/home/pi/light_relay/latlon', 'w') as f:
-            f.write(latlon)
+        if ',' in latlon:
+            with open('/home/pi/light_relay/latlon', 'w') as f:
+                f.write(latlon)
         print(f'Location updated: {latlon}')
 
     except:
