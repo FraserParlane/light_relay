@@ -209,3 +209,5 @@ if __name__ == '__main__':
         sunshine()
     except Exception as e:
         print(e)
+        print(e.message)
+        print(e.args)
