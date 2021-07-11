@@ -1,5 +1,8 @@
 from suntime import Sun
-import wiringpi
+try:
+    import wiringpi
+except:
+    pass
 import datetime
 import time
 import os
@@ -74,7 +77,7 @@ def strip_timezone(dt):
     return datetime.datetime.strptime(dt.strftime(strformat), strformat)
 
 
-def get_sunset_sunrise():
+def get_sunrise_sunset():
     # Get the sunset and sunrise for current location
 
     lat, lon = get_location()
@@ -125,21 +128,21 @@ def sunshine():
     # Emulate sunshine
 
     # Wait for the pi to fully start up
+    print('Waiting for Pi to warm up')
     time.sleep(10)
 
     # Update location
+    print('Updating location')
     update_location()
 
     # Set up wiringpi
+    print('Setting up GPIO')
     wiringpi.wiringPiSetupGpio()
-
-    # Set up the UART data connection
     serial = wiringpi.serialOpen('/dev/ttyS0', 9600)
-
-    # Set up the trigger
     wiringpi.pinMode(6, 1)
 
     # Send a warm up flash
+    print('Running warmup')
     warmup(serial)
 
     # Configure
@@ -149,11 +152,11 @@ def sunshine():
 
         # Get now
         now = get_now()
-        sunrise, sunset = get_sunset_sunrise()
+        sunrise, sunset = get_sunrise_sunset()
         print(f'Sunrise: {sunrise}')
         print(f'Sunset: {sunset}')
 
-        # If it's after sunrise and the bulb is off
+        # If it is during the day
         if sunrise < now < sunset:
 
             print('Daytime triggered')
@@ -183,6 +186,7 @@ def sunshine():
             print(f'Waiting {length_sec}')
             time.sleep(length_sec)
 
-
 if __name__ == '__main__':
-    sunshine()
+    # sunshine()
+    sunrise, sunset = get_sunrise_sunset()
+    print('a')
