@@ -11,9 +11,9 @@ def run():
         time.sleep(timer)
         print('I')
         wiringpi.serialPuts(serial, 'on')
-        time.sleep(timer)
-        print('O')
-        wiringpi.serialPuts(serial, 'off')
+        # time.sleep(timer)
+        # print('O')
+        # wiringpi.serialPuts(serial, 'off')
 
 
 if __name__ == '__main__':
