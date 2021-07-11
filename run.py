@@ -205,4 +205,7 @@ def sunshine():
             time.sleep(length_sec)
 
 if __name__ == '__main__':
-    sunshine()
+    try:
+        sunshine()
+    except Exception as e:
+        print(e)
