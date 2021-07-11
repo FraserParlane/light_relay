@@ -6,7 +6,7 @@ def run():
     serial = wiringpi.serialOpen('/dev/ttyS0', 9600)
     print(serial)
     wiringpi.serialPuts(serial, 'P7')
-    timer = 0.3
+    timer = 5
     for i in range(7):
         time.sleep(timer)
         print('I')
