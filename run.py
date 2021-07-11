@@ -118,7 +118,7 @@ def dur_in_seconds(sunrise, sunset, offset=0):
 def minutes_to_relay_format(minutes):
     # Convert the number of minutes to the format of the relay
     smin = str(minutes).zfill(4)
-    string = smin[0:1] + '..' + smin[2] + '.' + smin[3] + '.'
+    string = smin[0] + smin[1] + '..' + smin[2] + '.' + smin[3] + '.'
     return string
 
 
