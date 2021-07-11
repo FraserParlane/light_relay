@@ -11,7 +11,7 @@ def send_command(serial, command):
 def send_trigger():
     # Send a relay trigger
     wiringpi.digitalWrite(6, 1)
-    time.sleep(0.1)
+    time.sleep(0.5)
     wiringpi.digitalWrite(6, 0)
 
 
@@ -30,9 +30,9 @@ def run():
     send_command(serial, 'P1')
     send_command(serial, 'OP:0001')
 
-    while True:
-        send_trigger()
-        time.sleep(2)
+    # while True:
+    #     send_trigger()
+    #     time.sleep(2)
 
 
 
