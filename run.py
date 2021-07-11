@@ -5,14 +5,15 @@ def run():
     wiringpi.wiringPiSetupGpio()
     serial = wiringpi.serialOpen('/dev/ttyAMA0', 9600)
     print(serial)
+    wiringpi.serialPuts(serial, 'P7')
     timer = 0.3
-    while True:
-        time.sleep(timer)
-        print('I')
-        wiringpi.serialPuts(serial, 'on')
-        time.sleep(timer)
-        print('O')
-        wiringpi.serialPuts(serial, 'off')
+    # for i in range(7):
+    #     time.sleep(timer)
+    #     print('I')
+    #     wiringpi.serialPuts(serial, 'on')
+    #     time.sleep(timer)
+    #     print('O')
+    #     wiringpi.serialPuts(serial, 'off')
 
 
 if __name__ == '__main__':
