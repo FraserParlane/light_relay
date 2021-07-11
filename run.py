@@ -178,7 +178,7 @@ def sunshine():
             print(f'Relay format: {relay_min}')
 
             # Start the relay
-            send_command(serial, f'OP:e{relay_min}')
+            send_command(serial, f'OP:{relay_min}')
             send_trigger()
 
             # Wait for day to end, plus an hour
