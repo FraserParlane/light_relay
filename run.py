@@ -80,12 +80,16 @@ def strip_timezone(dt):
 def get_sunrise_sunset():
     # Get the sunset and sunrise for current location
 
+    print('reading location')
     lat, lon = get_location()
+    print('making sun')
     sun = Sun(lat, lon)
+    print('gen times')
     sunrise = sun.get_sunrise_time()
     sunset = sun.get_sunset_time()
 
     # Convert into local timezone
+    print('converting')
     sunrise = utc_to_local(sunrise)
     sunset = utc_to_local(sunset)
 
