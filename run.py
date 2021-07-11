@@ -5,7 +5,7 @@ import time
 def send_command(serial, command):
     # Send a UART command
     wiringpi.serialPuts(serial, command)
-    time.sleep(0.1)
+    time.sleep(0.5)
 
 
 def send_trigger():
@@ -28,7 +28,7 @@ def run():
 
     # Configure
     send_command(serial, 'P1')
-    send_command(serial, 'OP:0001')
+    send_command(serial, 'OP: 0001')
 
     # while True:
     #     send_trigger()
