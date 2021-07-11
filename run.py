@@ -6,7 +6,7 @@ def run():
     serial = wiringpi.serialOpen('/dev/ttyS0', 9600)
     print(serial)
     wiringpi.serialPuts(serial, 'P1')
-    wiringpi.serialPuts(serial, 'OP: 1111')
+    wiringpi.serialPuts(serial, 'OP1111')
 
 
 if __name__ == '__main__':
