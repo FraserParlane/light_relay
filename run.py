@@ -135,7 +135,7 @@ def sunshine():
 
     # Wait for the pi to fully start up
     print('Waiting for Pi to warm up')
-    # time.sleep(10)
+    time.sleep(10)
 
     # Update location
     print('Updating location')
