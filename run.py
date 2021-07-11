@@ -89,7 +89,13 @@ def get_sunrise_sunset():
     sunrise = utc_to_local(sunrise)
     sunset = utc_to_local(sunset)
 
-    return sunrise.time(), sunset.time()
+    # Strip time
+    sunrise = sunrise.time()
+    sunset = sunset.time()
+
+    print(f'first (sunrise): {sunrise}')
+    print(f'second (sunset): {sunset}')
+    return sunrise, sunset
 
 
 def get_now():
@@ -129,7 +135,7 @@ def sunshine():
 
     # Wait for the pi to fully start up
     print('Waiting for Pi to warm up')
-    time.sleep(10)
+    # time.sleep(10)
 
     # Update location
     print('Updating location')
@@ -187,6 +193,6 @@ def sunshine():
             time.sleep(length_sec)
 
 if __name__ == '__main__':
-    sunshine()
-    # sunrise, sunset = get_sunrise_sunset()
-    # print('a')
+    # sunshine()
+    sunrise, sunset = get_sunrise_sunset()
+    print('a')
