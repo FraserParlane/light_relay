@@ -62,6 +62,7 @@ def get_location():
         print('reading')
         latlon = f.read()
     print('splitting')
+    print(latlon)
     lat, lon = latlon.split(',')
     print('floating')
     lat = float(lat)
