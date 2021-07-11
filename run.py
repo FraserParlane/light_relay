@@ -47,7 +47,7 @@ def update_location():
     # Save the current location to file
     try:
         latlon = os.popen('curl ipinfo.io/loc').read().rstrip()
-        with open('latlon', 'w') as f:
+        with open('/home/pi/light_relay/latlon', 'w') as f:
             f.write(latlon)
         print(f'Location updated: {latlon}')
 
@@ -58,7 +58,7 @@ def update_location():
 def get_location():
     # Get the current location
     print('opening file')
-    with open('latlon', 'r') as f:
+    with open('/home/pi/light_relay/latlon', 'r') as f:
         print('reading')
         latlon = f.read()
     print('splitting')
