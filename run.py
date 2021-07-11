@@ -7,13 +7,13 @@ def run():
     print(serial)
     wiringpi.serialPuts(serial, 'P7')
     timer = 0.3
-    # for i in range(7):
-    #     time.sleep(timer)
-    #     print('I')
-    #     wiringpi.serialPuts(serial, 'on')
-    #     time.sleep(timer)
-    #     print('O')
-    #     wiringpi.serialPuts(serial, 'off')
+    for i in range(7):
+        time.sleep(timer)
+        print('I')
+        wiringpi.serialPuts(serial, 'on')
+        time.sleep(timer)
+        print('O')
+        wiringpi.serialPuts(serial, 'off')
 
 
 if __name__ == '__main__':
