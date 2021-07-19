@@ -1,27 +1,25 @@
+import flask
 from flask import Flask, request
 import requests
 
-
+print('Does this even run?')
 app = Flask(__name__)
+print('Does this run?')
 
 
 @app.route("/")
 def hello_world():
-    printer('Home pinged')
     return "<p>Details at https://github.com/FraserParlane/light_relay</p>"
 
 
 @app.route("/command", methods=["POST"])
 def command():
-    printer('Command received')
-    printer(request.form)
-    printer(request.data)
-    printer("Done")
-    return "200"
-
-
-def printer(msg):
-    print(msg, flush=True)
+    """
+    Receive a command to pass to the relay.
+    :return:
+    """
+    print(request.form, flush=True)
+    return flask.Response(status=200)
 
 
 def make_request():
@@ -30,6 +28,7 @@ def make_request():
         url=url,
         data={'data': 'value'}
     )
+
 
 
 if __name__ == '__main__':
