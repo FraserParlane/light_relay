@@ -12,8 +12,10 @@ def hello_world():
 
 @app.route("/command", methods=["POST"])
 def command():
+    print('test')
     print(type(request.data))
     print(request.data)
+
 
 def make_request(data):
     url = 'http://192.168.86.30:5000'
