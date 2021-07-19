@@ -1,3 +1,4 @@
+requests
 wiringpi
 suntime
 flask
