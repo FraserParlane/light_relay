@@ -1,13 +1,20 @@
-import flask
 from flask import Flask, request
+from lights import Lights
 import requests
+import flask
 
 app = Flask(__name__)
 
-a = 'defined'
+# Define the light control class
+lights = Lights()
+
 
 @app.route("/")
 def hello_world():
+    """
+    Home page.
+    :return: Text
+    """
     return "<p>Details at https://github.com/FraserParlane/light_relay</p>"
 
 
@@ -15,21 +22,8 @@ def hello_world():
 def command():
     """
     Receive a command to pass to the relay.
-    :return:
+    :return: Status 200
     """
     print(request.form, flush=True)
-    print(a, flush=True)
+    lights.command(request.form)
     return flask.Response(status=200)
-
-
-def make_request():
-    url = 'http://192.168.86.30:5000/command'
-    result = requests.post(
-        url=url,
-        data={'data': 'value'}
-    )
-
-
-
-if __name__ == '__main__':
-    make_request()
