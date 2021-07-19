@@ -7,15 +7,16 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    print('Home pinged', flush=True)
     return "<p>Details at https://github.com/FraserParlane/light_relay</p>"
 
 
 @app.route("/command", methods=["POST"])
 def command():
-    print('test')
-    print(type(request.data))
-    print(request.data)
+    printer(request.data)
+
+
+def printer(msg):
+    print(msg, flush=True)
 
 
 def make_request(data):
