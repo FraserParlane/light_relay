@@ -21,12 +21,12 @@ def printer(msg):
     print(msg, flush=True)
 
 
-def make_request(data):
+def make_request():
     url = 'http://192.168.86.30:5000'
     result = requests.post(
         url=url,
-        data=data
+        data={'data':'value'}
     )
 
 if __name__ == '__main__':
-    make_request('test')
+    make_request()
