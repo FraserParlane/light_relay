@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
+    printer('Home pinged')
     return "<p>Details at https://github.com/FraserParlane/light_relay</p>"
 
 
