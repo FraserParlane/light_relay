@@ -15,6 +15,9 @@ def hello_world():
 def command():
     printer('Command received')
     printer(request.form)
+    printer(request.data)
+    printer("Done")
+    return "200"
 
 
 def printer(msg):
