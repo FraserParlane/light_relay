@@ -13,6 +13,7 @@ def hello_world():
 
 @app.route("/command", methods=["POST"])
 def command():
+    printer('Command received')
     printer(request.data)
 
 
