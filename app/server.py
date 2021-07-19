@@ -2,10 +2,9 @@ import flask
 from flask import Flask, request
 import requests
 
-print('Does this even run?')
 app = Flask(__name__)
-print('Does this run?')
 
+a = 'defined'
 
 @app.route("/")
 def hello_world():
@@ -19,6 +18,7 @@ def command():
     :return:
     """
     print(request.form, flush=True)
+    print(a, flush=True)
     return flask.Response(status=200)
 
 
