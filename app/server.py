@@ -14,7 +14,7 @@ def hello_world():
 @app.route("/command", methods=["POST"])
 def command():
     printer('Command received')
-    printer(request.data)
+    printer(request.form)
 
 
 def printer(msg):
@@ -22,11 +22,12 @@ def printer(msg):
 
 
 def make_request():
-    url = 'http://192.168.86.30:5000'
+    url = 'http://192.168.86.30:5000/command'
     result = requests.post(
         url=url,
-        data={'data':'value'}
+        data={'data': 'value'}
     )
+
 
 if __name__ == '__main__':
     make_request()
