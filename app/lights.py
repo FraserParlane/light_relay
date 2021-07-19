@@ -1,9 +1,4 @@
-import requests
-try:
-    import wiringpi
-except:
-    pass
-import time
+
 
 
 class Lights(object):
