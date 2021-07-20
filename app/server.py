@@ -65,7 +65,14 @@ class Lights(object):
         :return: None
         """
 
-        print(dict(command), flush=True)
+        # Define the command to run
+        command = dict(command)
+        method = list(command.keys())[0]
+        kwargs = list(command.values())[0]
+
+        # Log
+        print(f'method: {method}', flush=True)
+        print(f'kwargs: {kwargs}', flush=True)
 
 # Instantiate the lights control class
 lights = Lights()
