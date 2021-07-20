@@ -8,13 +8,19 @@ import flask
 
 app = Flask(__name__)
 
+
 # Define the light control class
 class Lights(object):
 
     def __init__(self):
         """
-        Setup the serial communication lines
+        Setup
         """
+
+        # Define if auto lights on should occur
+        self.auto = True
+
+        # Setup the serial communication lines
         self.delay = 0.5
         wiringpi.wiringPiSetupGpio()
         self.serial = wiringpi.serialOpen('/dev/ttyS0', 9600)
@@ -51,7 +57,14 @@ class Lights(object):
             time.sleep(2 - self.delay)
 
     def command(self, command):
-        self.demo()
+        """
+        Commands have the following keys:
+            'type': either 'command' or 'trigger'.
+            
+        :param command:
+        :return: None
+        """
+        print(command, flush=True)
 
 # Instantiate the lights control class
 lights = Lights()
