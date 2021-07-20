@@ -71,6 +71,7 @@ class Lights(object):
         kwargs = list(command.values())[0]
 
         # Log
+        print(f'command: {command}', flush=True)
         print(f'method: {method}', flush=True)
         print(f'kwargs: {kwargs}', flush=True)
 

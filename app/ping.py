@@ -5,7 +5,7 @@ def make_request():
     url = 'http://192.168.86.30:5000/command'
     result = requests.post(
         url=url,
-        data={'data': 'value'}
+        data={'data': {'a': 'b'}}
     )
 
 
