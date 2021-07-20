@@ -64,7 +64,8 @@ class Lights(object):
         :param command:
         :return: None
         """
-        print(command, flush=True)
+
+        print(dict(command), flush=True)
 
 # Instantiate the lights control class
 lights = Lights()
