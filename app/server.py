@@ -3,8 +3,9 @@ try:
     import wiringpi
 except:
     pass
-import time
 import flask
+import time
+import json
 
 app = Flask(__name__)
 
@@ -68,7 +69,7 @@ class Lights(object):
         # Define the command to run
         command = dict(command)
         method = list(command.keys())[0]
-        kwargs = list(command.values())[0]
+        kwargs = json.loads(list(command.values())[0])
 
         # Log
         print(f'command: {command}', flush=True)
